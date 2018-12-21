@@ -94,6 +94,42 @@
 				}
 			});
 		}
-		</script>
+		
+		/* =============================   PROVINCE   ============================= */
+		/* Add Popup Show */
+		$("#modal-input").on("click", "#button-province-tambah",
+				function() {
+					$.ajax({
+						url : "country/tambahProvince.html",
+						type : "get",
+						dataType : "html",
+						success : function(result) {
+							$("#modal-province").find(".modal-title")
+									.html("Form Province");
+							$("#modal-province").find(".modal-body").html(
+									result);
+							$("#modal-province").modal("show");
+						}
+					});
+				});
+		
+		/* Add Province */
+		$("#modal-province").on("submit", "#form-province-tambah",
+				function() {
+					$.ajax({
+						url : "country/createProvince.json",
+						type : "get",
+						dataType : "json",
+						data : $(this).serialize(),
+						success : function(result) {
+							$("#modal-alert1").find(".modal-title");
+							$("#modal-alert1").modal("show");
+							$("#modal-province").modal("hide");
+							listDataProvince();
+						}
+					});
+					return false;
+				});
+</script>
 	</div>
 </form>
